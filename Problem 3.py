@@ -1,25 +1,48 @@
 # the prime factors of 131195 are 5,7,13 & 29
 #What's the larget prime factor of 600851475143
 
-def find_factors(i = 0, number = 600851475143):
+# puts all factors in factors list
+# Largest prime factor found is set to answer
+# stops when all factors multiplied equal original number
+def find_prime_factors(number):
+    solved = False
     factors = []
-    while i * i < number:
+    answer = 2
+    i = 1
+    while solved == False:
         i = i + 1
         if number % i == 0:
-            factors.append(i)
+            x = is_prime(i)
+            if x == True:
+                answer = i
+                factors.append(i)
+            elif x == False:
+                factors.append(i)
+                y = multiplyList(factors)
+                if y >= number:
+                    solved = True
+    return(answer)
 
-    for n in range((len(factors)-1), 0, -1):
-        x = find_prime(2, factors[n])
-        if x == False:
-            factors.remove(factors[n])
-    print(factors[-1], "is the largest prime factor of", number)
-
-def find_prime(j, num):
+# Checks all possible factors
+# if none are found is_prime is true
+def is_prime(num):
+    j = 1
     is_prime = True
-    while j * j < num and is_prime == True:
-        j = j + 1
+    while j * 2 < num and is_prime == True:
+        j = j + 2
         if num % j == 0:
             is_prime = False
     return(is_prime)
 
-x = find_factors()
+
+# multiplies factors of a number
+def multiplyList(myList):
+    result = 1
+    for x in myList:
+        result = result * x
+    return(result)
+
+
+num = int(input("What number would you like to find the largets prime factor for?"))
+solution = find_prime_factors(num)
+print("The largest prime factor of", num, "is", solution)
