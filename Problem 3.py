@@ -9,7 +9,7 @@ def find_prime_factors(number):
     factors = []
     answer = 2
     i = 1
-    while solved == False:
+    while solved == False or i * 2 >= number:
         i = i + 1
         if number % i == 0:
             x = is_prime(i)
