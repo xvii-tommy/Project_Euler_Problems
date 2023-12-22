@@ -21,45 +21,52 @@ grid = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8]
         [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
         [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]]
 
-def left_to_right():
+def Horizontal():
     biggest_sum = 0
     current_sum = 1
-    i = 0
-    j = 0
-    count = 1
-    while i < 20:
-        while j < 20:
-            current_sum = current_sum * grid[i][j]
-            if count == 4:
-                if current_sum > biggest_sum:
-                    biggest_sum = current_sum
-                current_sum = 1
-                count = 0
-                j = j - 3
-            count += 1
-            j += 1
-        i += 1
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[i]) - 3):
+            print(grid[i][j], grid[i][j + 1], grid[i][j + 2], grid[i][j + 3])
+            current_sum = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
+            if current_sum > biggest_sum:
+                biggest_sum = current_sum
+            current_sum = 1
+    return (biggest_sum)
+
+def verticle():
+    current_sum = 1
+    biggest_sum = 0
+    for i in range(0, len(grid) - 3):
+        for j in range(0, len(grid[i])):
+            print(grid[i][j], grid[i + 1][j], grid[i + 2][j], grid[i + 3][j])
+            current_sum = (grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j])
+            if current_sum > biggest_sum:
+                biggest_sum = current_sum
     return(biggest_sum)
 
-def right_to_left():
-    pass
+def nw_and_se():
+    current_sum = 1
+    biggest_sum = 0
+    for i in range(0, len(grid) - 3):
+        for j in range(0, len(grid[i]) - 3):
+            print((grid[i][j], grid[i + 1][j + 1], grid[i + 2][j + 2], grid[i + 3][j + 3]))
+            current_sum = (grid[i][j] * grid[i + 1][j + 1] * grid[i + 2][j + 2] * grid[i + 3][j + 3])
+            if current_sum > biggest_sum:
+                biggest_sum = current_sum
+    return (biggest_sum)
 
-def up_down():
-    pass
+def sw_and_ne():
+    current_sum = 1
+    biggest_sum = 0
+    for i in range(0, len(grid) - 3):
+        for j in range(3, len(grid[i])):
+            print((grid[i][j], grid[i + 1][j - 1], grid[i + 2][j - 2], grid[i + 3][j - 3]))
+            current_sum = (grid[i][j] * grid[i + 1][j - 1] * grid[i + 2][j - 2] * grid[i + 3][j - 3])
+            if current_sum > biggest_sum:
+                biggest_sum = current_sum
+    return (biggest_sum)
 
-def down_up():
-    pass
-
-def nw_to_se():
-    pass
-
-def se_to_nw():
-    pass
-
-def sw_to_ne():
-    pass
-
-def ne_to_sw():
-    pass
-
-print(left_to_right())
+#print(Horizontal())
+#print(verticle())
+#print(nw_and_se())
+print(sw_and_ne())
